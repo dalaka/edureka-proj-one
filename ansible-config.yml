@@ -1,0 +1,15 @@
+- hosts : my_host
+  become: true
+
+  tasks:
+  - name:  update apt
+    command : apt update
+
+  - name: install docker
+    command: sudo apt install -y docker.io
+
+  - name: start docker service
+    command: sudo systemctl docker start
+
+  - name: deploy application
+    command : sudo docker run -itd -p 8086:80 dalaka/myphpsite:1.0
